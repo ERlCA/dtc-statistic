@@ -1,0 +1,96 @@
+body {
+  font-size: 16px;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1em 0;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.sorting-option {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-option {
+  border-bottom: 1px solid #000;
+  padding-bottom: 1rem;
+  margin-bottom: 15px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.secondary-option {
+  border-bottom: 1px solid #000;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.secondary-option div {
+  margin-right: 15px;
+  width: 20%;
+}
+
+.third-option {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 1rem;
+}
+
+.third-option div {
+  width: 10rem;
+}
+
+.contents-div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.content-wrapper {
+  border: 1px solid #000;
+  width: 300px;
+  padding: 10px 5px 0;
+  margin-bottom: 1rem;
+}
+
+.content-wrapper h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.content-wrapper h3 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.content-wrapper h4 {
+  text-align: center;
+  font-style: italic;
+  font-weight: 900;
+  font-size: .9rem;
+  margin: 5px 0;
+}
+
+.content-wrapper h4::before {
+  content: '#';
+  font-weight: 900;
+}
+
+.content-wrapper p {
+  margin: .5rem 0;
+}
