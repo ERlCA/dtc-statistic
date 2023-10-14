@@ -42,14 +42,27 @@ h1 {
   width: 20%;
 }
 
+.contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .third-option {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
 .third-option div {
   width: 10rem;
+}
+
+.btn-result {
+  width: 200px;
+  padding: .8rem;
+  margin: 0 auto 1rem;
 }
 
 .contents-div {

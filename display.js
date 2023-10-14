@@ -1,7 +1,39 @@
-const displayData = (items) => {
-  contents.innerHTML = '';
-  contents.className = "contents";
-  contentsDiv.className = 'contents-div';
+const displaySortingOption = () => {
+  sortingList.forEach(element => {
+    const div = document.createElement('div');
+    const inputTag = document.createElement('input');
+    const labelTag = document.createElement('label');
+    let id = element
+      .toLowerCase()
+      .replaceAll('_', '-');
+    let label = element
+      .toLowerCase()
+      .replaceAll('_', ' ');
+
+    div.className = 'main-option-container';
+    inputTag.id = id;
+    inputTag.setAttribute('type', 'radio');
+    inputTag.setAttribute('name', 'main-option');
+    inputTag.value = element;
+    labelTag.textContent = label;
+    labelTag.setAttribute('for', id);
+
+    //   div.innerHTML = `
+    //   <input type="radio" id=${id} name="main-option" value=${element} />
+    //   <label for=${id}>${label}</label>
+    // `;
+
+    if (inputTag.value === 'all')
+      inputTag.checked = true;
+    div.appendChild(inputTag);
+    div.appendChild(labelTag);
+    mainOption.appendChild(div);
+  });
+
+  sortingContainer.className = "sorting-option";
+  mainOption.className = "main-option";
+  sortingContainer.appendChild(mainOption);
+  container.appendChild(sortingContainer);
 
   thirdOption.className = 'third-option';
   thirdOption.innerHTML = `
@@ -19,6 +51,21 @@ const displayData = (items) => {
       </div>
     `;
   contents.appendChild(thirdOption);
+
+  btnResult.className = 'btn-result';
+  btnResult.textContent = 'Show results';
+
+  contents.className = "contents";
+  contents.appendChild(btnResult);
+  container.appendChild(contents);
+  console.log(contents);
+};
+
+const displayData = (items) => {
+  // contentsDiv.innerHTML = '';
+  contentsDiv.className = 'contents-div';
+
+
 
   items.forEach((item) => {
     const contentWrapper = document.createElement('div');
@@ -48,13 +95,12 @@ const displayData = (items) => {
     contentsDiv.appendChild(contentWrapper);
   });
   contents.appendChild(contentsDiv);
-  container.appendChild(contents);
 };
 
 const secondOptionGenerator = () => {
   const inputList = document.querySelectorAll('input[name="main-option"]');
 
-  contents.innerHTML = '';
+  //contents.innerHTML = '';
 
   inputList.forEach(radio => {
     radio.addEventListener('change', (e) => {
@@ -94,44 +140,7 @@ const displaySecondOption = (name) => {
   sortingContainer.appendChild(secondOption);
 };
 
-const displaySortingOption = () => {
-  sortingList.forEach(element => {
-    const div = document.createElement('div');
-    const inputTag = document.createElement('input');
-    const labelTag = document.createElement('label');
-    let id = element
-      .toLowerCase()
-      .replaceAll('_', '-');
-    let label = element
-      .toLowerCase()
-      .replaceAll('_', ' ');
 
-    div.className = 'main-option-container';
-    inputTag.id = id;
-    inputTag.setAttribute('type', 'radio');
-    inputTag.setAttribute('name', 'main-option');
-    inputTag.value = element;
-    labelTag.textContent = label;
-    labelTag.setAttribute('for', id);
-
-    //   div.innerHTML = `
-    //   <input type="radio" id=${id} name="main-option" value=${element} />
-    //   <label for=${id}>${label}</label>
-    // `;
-
-    if (inputTag.value === 'all')
-      inputTag.checked = true;
-    div.appendChild(inputTag);
-    div.appendChild(labelTag);
-    mainOption.appendChild(div);
-  });
-
-  sortingContainer.className = "sorting-option";
-  mainOption.className = "main-option";
-  sortingContainer.appendChild(mainOption);
-  container.appendChild(sortingContainer);
-
-};
 //-------------------------------------------------
 
 //-----------xx Testing Code xx----------------
