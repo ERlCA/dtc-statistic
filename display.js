@@ -1,4 +1,5 @@
 const displaySortingOption = () => {
+
   sortingList.forEach(element => {
     const div = document.createElement('div');
     const inputTag = document.createElement('input');
@@ -18,11 +19,6 @@ const displaySortingOption = () => {
     labelTag.textContent = label;
     labelTag.setAttribute('for', id);
 
-    //   div.innerHTML = `
-    //   <input type="radio" id=${id} name="main-option" value=${element} />
-    //   <label for=${id}>${label}</label>
-    // `;
-
     if (inputTag.value === 'all')
       inputTag.checked = true;
     div.appendChild(inputTag);
@@ -36,20 +32,28 @@ const displaySortingOption = () => {
   container.appendChild(sortingContainer);
 
   thirdOption.className = 'third-option';
-  thirdOption.innerHTML = `
-      <div>
-        <input id='default' type='radio' name='third-option' value='default' checked/>
-        <label for='default'>Default</label>
-      </div>
-      <div>
-        <input id='ascendant' type='radio' name='third-option' value='Ascendant'/>
-        <label for='ascendant'>Ascendant</label>
-      </div>
-      <div>
-        <input id='descendant' type='radio' name='third-option' value='Descedant'/>
-        <label for='descendant'>Descedant</label>
-      </div>
-    `;
+  thirdOption.innerHTML = '';
+
+  mainOption.querySelectorAll('input[name="main-option"]')
+    .forEach(input => {
+      input.addEventListener('change', e => {
+        if (e.target.value === 'all' && e.target.checked)
+          thirdOption.innerHTML = '';
+        else thirdOption.innerHTML = `
+          <div>
+            <input id='ascendent' type='radio' name='third-option' value='Ascendent' checked/>
+            <label for='ascendent'>Ascendent</label>
+          </div>
+          <div>
+            <input id='descendent' type='radio' name='third-option' value='Descendent'/>
+            <label for='descendent'>Descendent</label>
+          </div>
+        `
+      });
+    });
+
+
+
   contents.appendChild(thirdOption);
 
   btnResult.className = 'btn-result';
@@ -58,15 +62,14 @@ const displaySortingOption = () => {
   contents.className = "contents";
   contents.appendChild(btnResult);
   container.appendChild(contents);
-  console.log(contents);
 };
 
 const displayData = (items) => {
-  // contentsDiv.innerHTML = '';
+  contentsDiv.innerHTML = '';
   contentsDiv.className = 'contents-div';
 
-
-
+  if (items === undefined || items.length < 1)
+    return;
   items.forEach((item) => {
     const contentWrapper = document.createElement('div');
 
@@ -86,8 +89,8 @@ const displayData = (items) => {
       <h4>${sanitizedId}</h4>
       <p>Item type : ${sanitizedItemType}</p>
       <p>Sales channel : ${sanitizedSalesChannel}</p>
-      <p>Units sold : ${sanitizedPrice}</p>
-      <p>Unit price : ${sanitizedUnitsSold}</p>
+      <p>Unit price : ${sanitizedPrice}</p>
+      <p>Units sold : ${sanitizedUnitsSold}</p>
       <p>Unit cost : ${sanitizedUnitCost}</p>
     `;
 
@@ -100,8 +103,6 @@ const displayData = (items) => {
 const secondOptionGenerator = () => {
   const inputList = document.querySelectorAll('input[name="main-option"]');
 
-  //contents.innerHTML = '';
-
   inputList.forEach(radio => {
     radio.addEventListener('change', (e) => {
       // if (e.target.value === 'region' || e.target.value === 'country' || e.target.value === 'item_type' || e.target.value === 'sales_channel')
@@ -113,6 +114,23 @@ const secondOptionGenerator = () => {
         case 'item_type':
         case 'sales_channel':
           displaySecondOption(e.target.value);
+          secondRadioInput = document.querySelectorAll('input[name="input-second-option"]');
+          secondRadioInput.forEach(radio => {
+            radio.addEventListener('change', e => {
+              if (e.target.value !== 'all')
+                thirdOption.innerHTML = '';
+              else thirdOption.innerHTML = `
+          <div>
+            <input id='ascendent' type='radio' name='third-option' value='Ascendent' checked/>
+            <label for='ascendent'>Ascendent</label>
+          </div>
+          <div>
+            <input id='descendent' type='radio' name='third-option' value='Descendent'/>
+            <label for='descendent'>Descendent</label>
+          </div>
+        `;
+            });
+          });
           break;
 
         default:
@@ -123,14 +141,25 @@ const secondOptionGenerator = () => {
 };
 
 const displaySecondOption = (name) => {
-  secondOption.innerHTML = '';
-  let id = name.replace('_', '-');
+  let id = escapeHTML(name).replace('_', '-');
   const newArray = Array.from(new Set(datas.map(item => item[name])));
+
+  secondOption.innerHTML = '';
+
   newArray.sort((a, b) => typeof a === 'string' ? a.localeCompare(b) : a - b);
+  newArray.unshift('All');
   newArray.forEach(item => {
     const div = document.createElement('div');
-    div.innerHTML = `
-      <input type="radio" id=${id} name=${name} />
+    const value = escapeHTML(item);
+    if (item === 'All') {
+      div.innerHTML = `
+      <input type="radio" id="all" name='input-second-option' value='all' checked/>
+      <label for="all">All</label>
+
+      `;
+
+    } else div.innerHTML = `
+      <input type="radio" id=${id} name='input-second-option' value="${value}" />
       <label for=${id}>${item}</label>
     `;
 

@@ -9,7 +9,10 @@ const btnResult = document.createElement('button');
 const sortingList = ['all'];
 const URL = "./sales_100.json";
 const datas = [];
+const dataCopy = [];
 const filteredData = [];
+
+let secondRadioInput = '';
 
 /*------------xxxxxxxxxxxxxxxx--------------*/
 

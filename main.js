@@ -29,9 +29,7 @@ fetchData(URL)
     getIndexes(datas);
     displaySortingOption();
     secondOptionGenerator();
-    return datas;
-  })
-  .then(datas => {
+
     displayData(datas);
   })
   .catch(e => console.log(e));

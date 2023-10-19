@@ -65,6 +65,11 @@ h1 {
   margin: 0 auto 1rem;
 }
 
+.btn-result:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
+
 .contents-div {
   display: flex;
   flex-flow: row wrap;
