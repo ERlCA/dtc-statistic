@@ -53,6 +53,8 @@ h1 {
   flex-flow: row nowrap;
   justify-content: center;
   margin-bottom: 1rem;
+
+  position: relative;
 }
 
 .third-option div {
@@ -111,4 +113,25 @@ h1 {
 
 .content-wrapper p {
   margin: .5rem 0;
+}
+
+.btn-chart {
+  display: block;
+  position: absolute;
+  top: -40%;
+  right: 30%;
+  font-weight: 700;
+  text-align: center;
+  width: 100px;
+  padding: 10px 0;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: #c2c5c585;
+  color: #e49826;
+  text-decoration: none;
+}
+
+.btn-chart:hover {
+  background-color: #ebf1f1c4;
+  border: 1px solid #aaa;
 }

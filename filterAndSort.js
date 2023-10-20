@@ -1,7 +1,4 @@
 /* ------------------xx---------------------- */
-
-
-/* ----------xx Testing codes xx-------------- */
 btnResult.addEventListener('click', () => {
   const firstRadioInput = mainOption.querySelectorAll('input[name="main-option"]');
   // let secondRadioInput = '';
@@ -52,7 +49,4 @@ btnResult.addEventListener('click', () => {
     });
   } else displayData(dataCopy);
 
-
-
-  // displayData(filteredData);
 });

@@ -6,8 +6,7 @@ const fetchData = () =>
       return res.json();
     })
     .catch(e => {
-      "An error occured : ", e.message
-      throw e;
+      Error("An error occured : ", e.message)
     });
 
 const escapeHTML = (html) => {
@@ -18,8 +17,6 @@ const escapeHTML = (html) => {
 };
 
 //------------------------------------------------
-
-//------------xx Testing codes xx----------------
 
 fetchData(URL)
   .then(data => {

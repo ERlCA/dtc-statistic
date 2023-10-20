@@ -39,16 +39,30 @@ const displaySortingOption = () => {
       input.addEventListener('change', e => {
         if (e.target.value === 'all' && e.target.checked)
           thirdOption.innerHTML = '';
-        else thirdOption.innerHTML = `
-          <div>
-            <input id='ascendent' type='radio' name='third-option' value='Ascendent' checked/>
-            <label for='ascendent'>Ascendent</label>
-          </div>
-          <div>
-            <input id='descendent' type='radio' name='third-option' value='Descendent'/>
-            <label for='descendent'>Descendent</label>
-          </div>
-        `
+        else if (e.target.value !== 'all' && e.target.checked)
+          thirdOption.innerHTML = `
+            <div>
+              <input id='ascendent' type='radio' name='third-option' value='Ascendent' checked/>
+              <label for='ascendent'>Ascendent</label>
+            </div>
+            <div>
+              <input id='descendent' type='radio' name='third-option' value='Descendent'/>
+              <label for='descendent'>Descendent</label>
+            </div>
+          `
+        switch (e.target.value) {
+          case 'country':
+          case 'region':
+          case 'item_type':
+          case 'sales_channel':
+            console.log('test');
+            const chartBtn = document.createElement('a');
+            chartBtn.className = 'btn-chart';
+            chartBtn.textContent = 'Chart';
+            chartBtn.setAttribute('href', './chart.html');
+            thirdOption.appendChild(chartBtn);
+            break;
+        }
       });
     });
 
@@ -114,6 +128,7 @@ const secondOptionGenerator = () => {
         case 'item_type':
         case 'sales_channel':
           displaySecondOption(e.target.value);
+
           secondRadioInput = document.querySelectorAll('input[name="input-second-option"]');
           secondRadioInput.forEach(radio => {
             radio.addEventListener('change', e => {
@@ -169,7 +184,12 @@ const displaySecondOption = (name) => {
   sortingContainer.appendChild(secondOption);
 };
 
-
+const createButton = () => {
+  const chartBtn = document.createElement('a');
+  chartBtn.className = 'btn-chart';
+  chartBtn.textContent = 'Chart';
+  chartBtn.setAttribute('href', './chart.html');
+  contents.appendChild(chartBtn);
+};
 //-------------------------------------------------
 
-//-----------xx Testing Code xx----------------
